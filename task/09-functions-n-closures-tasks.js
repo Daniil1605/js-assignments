@@ -98,6 +98,8 @@ function getPolynom() {
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
 function memoize(func) {
+    var answer = func();
+    return x => func;
     throw new Error('Not implemented');
 }
 
@@ -185,6 +187,9 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
+      {
+        return startFrom++;
+    }
     throw new Error('Not implemented');
 }
 

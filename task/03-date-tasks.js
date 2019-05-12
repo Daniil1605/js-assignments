@@ -22,6 +22,8 @@
  *    'Sun, 17 May 1998 03:00:00 GMT+01' => Date()
  */
 function parseDataFromRfc2822(value) {
+  var answer = new Date(value);
+  return(answer);
    throw new Error('Not implemented');
 }
 
@@ -37,6 +39,8 @@ function parseDataFromRfc2822(value) {
  *    '2016-01-19T08:07:37Z' => Date()
  */
 function parseDataFromIso8601(value) {
+  var answer = new Date(value);
+  return(answer);
    throw new Error('Not implemented');
 }
 
@@ -56,6 +60,23 @@ function parseDataFromIso8601(value) {
  *    Date(2015,1,1)    => false
  */
 function isLeapYear(date) {
+  var answer;
+    var year = date.getFullYear();
+    if (year%400 == 0){
+      answer = true;
+    }
+    else
+    if(year%100 == 0){
+      answer = false;
+    }
+    else
+    if(year%4 == 0){
+      answer= true;
+    }
+    else{
+      answer= false;
+    }
+    return (answer);
    throw new Error('Not implemented');
 }
 
@@ -76,6 +97,11 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
+  return ('0' + (endDate.getHours() - startDate.getHours())).slice(-2) +
+   ":" + ('0' + (endDate.getMinutes() - startDate.getMinutes())).slice(-2) +
+   ":" + ('0' + (endDate.getSeconds() - startDate.getSeconds())).slice(-2) +
+   "." + ('00' + (endDate.getMilliseconds() - startDate.getMilliseconds())).slice(-3);
+
    throw new Error('Not implemented');
 }
 
@@ -83,7 +109,7 @@ function timeSpanToString(startDate, endDate) {
 /**
  * Returns the angle (in radians) between the hands of an analog clock for the specified Greenwich time.
  * If you have problem with solution please read: https://en.wikipedia.org/wiki/Clock_angle_problem
- * 
+ *
  * @param {date} date
  * @return {number}
  *

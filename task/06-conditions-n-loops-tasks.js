@@ -30,6 +30,20 @@
  *
  */
 function getFizzBuzz(num) {
+  var answer;
+  answer = num;
+  if ((num % 3)==0 ) {
+  answer = 'Fizz';
+  }
+  if ((num % 5)==0 ) {
+  answer = 'Buzz';
+  }
+  if ((num % 3)==0 ) {
+  if ((num % 5)==0 ) {
+  answer = 'FizzBuzz';
+  }
+  }
+  return(answer);
     throw new Error('Not implemented');
 }
 
@@ -46,6 +60,11 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
+  var answer = 1;
+  for (var i = 1; i <= n; i++){
+    answer = answer*i;
+  }
+  return(answer);
     throw new Error('Not implemented');
 }
 
@@ -63,6 +82,11 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
+  var answer = 0;
+  for (var i = n1; i <= n2; i++){
+    answer = answer+i;
+  }
+  return(answer);
     throw new Error('Not implemented');
 }
 
@@ -82,30 +106,44 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a,b,c) {
+  var answer =true;
+  if (a+b<=c)
+  {
+    answer =false;
+  }
+  if (a+c<=b)
+  {
+    answer =false;
+  }
+  if (b+c<=a)
+  {
+    answer =false;
+  }
+  return(answer);
     throw new Error('Not implemented');
 }
 
 
 /**
  * Returns true, if two specified axis-aligned rectangles overlap, otherwise false.
- * Each rectangle representing by object 
+ * Each rectangle representing by object
  *  {
  *     top: 5,
  *     left: 5,
  *     width: 20,
  *     height: 10
  *  }
- * 
+ *
  *  (5;5)
- *     -------------  
- *     |           | 
+ *     -------------
+ *     |           |
  *     |           |  height = 10
- *     ------------- 
- *        width=20    
- * 
+ *     -------------
+ *        width=20
+ *
  * NOTE: Please use canvas coordinate space (https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes#The_grid),
  * it differs from Cartesian coordinate system.
- * 
+ *
  * @param {object} rect1
  * @param {object} rect2
  * @return {bool}
@@ -113,33 +151,39 @@ function isTriangle(a,b,c) {
  * @example:
  *   { top: 0, left: 0, width: 10, height: 10 },
  *   { top: 5, left: 5, width: 20, height: 20 }    =>  true
- * 
+ *
  *   { top: 0, left: 0, width: 10, height: 10 },
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
- *  
+ *
  */
 function doRectanglesOverlap(rect1, rect2) {
+  return (rect1.top < rect2.top + rect2.width)
+    && (rect2.top < rect1.top + rect1.width)
+    && (rect1.left < rect2.left + rect2.height)
+    && (rect2.left < rect1.left + rect1.height)
+    ;
+
     throw new Error('Not implemented');
 }
 
 
 /**
  * Returns true, if point lies inside the circle, otherwise false.
- * Circle is an object of 
+ * Circle is an object of
  *  {
  *     center: {
- *       x: 5,       
+ *       x: 5,
  *       y: 5
- *     },        
+ *     },
  *     radius: 20
  *  }
- * 
- * Point is object of 
+ *
+ * Point is object of
  *  {
  *     x: 5,
  *     y: 5
  *  }
- * 
+ *
  * @param {object} circle
  * @param {object} point
  * @return {bool}
@@ -147,9 +191,15 @@ function doRectanglesOverlap(rect1, rect2) {
  * @example:
  *   { center: { x:0, y:0 }, radius:10 },  { x:0, y:0 }     => true
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
- *   
+ *
  */
 function isInsideCircle(circle, point) {
+  var answer;
+  if(Math.pow(circle.center.x - point.x, 2) + Math.pow(circle.center.y - point.y, 2) < Math.pow(circle.radius, 2))
+  answer = true;
+  else
+  answer = false;
+  return(answer);
     throw new Error('Not implemented');
 }
 
@@ -166,6 +216,7 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
+
     throw new Error('Not implemented');
 }
 
@@ -192,6 +243,9 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  var answer;
+  answer = (isStartIncluded ? '[' : '(') + (a < b ? a : b)+ ', '+ (a < b ? b : a)+ (isEndIncluded ? ']' : ')');
+  return(answer);
     throw new Error('Not implemented');
 }
 
@@ -209,6 +263,9 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
+  var answer;
+  answer = str.split('').reverse().join('');
+  return(answer);
     throw new Error('Not implemented');
 }
 
@@ -226,6 +283,9 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
+  var answer;
+  answer = num.toString().split('').reverse().join('');
+  return(answer);
     throw new Error('Not implemented');
 }
 
@@ -251,6 +311,18 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
+    var sum = 0;
+    var num = ccn.toString();
+    var len = ccn.toString().length;
+    for(var i = 0; i < len; i++) {
+        var iterat = (num[i] - '0') * (2 - (i + len) % 2);
+        if(iterat > 9)
+        iterat -=  9;
+        else
+        iterat -=  0;
+        sum += iterat;
+    }
+    return sum % 10 == 0;
     throw new Error('Not implemented');
 }
 
@@ -270,6 +342,20 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
+        var number = num.toString();
+        var answer = 0;
+        do {
+          if (answer>0)
+          answer = 0;
+        for(var i = 0; i < number.length; i++){
+            answer = answer + Number(number[i]);
+        }
+        number = answer.toString();
+      }
+      while(answer > 9)
+
+
+        return (answer);
     throw new Error('Not implemented');
 }
 
@@ -293,9 +379,16 @@ function getDigitalRoot(num) {
  *   '[[][][[]]]' => true
  *   '[[][]][' => false
  *   '{)' = false
- *   '{[(<{[]}>)]}' = true 
+ *   '{[(<{[]}>)]}' = true
  */
 function isBracketsBalanced(str) {
+  var len = str.length;
+    while(len!=0)
+    {
+        str = str.replace(/(\[])|(\(\))|(\{})|(<>)/, '');
+        len--;
+    }
+    return str.length == 0;
     throw new Error('Not implemented');
 }
 
@@ -356,6 +449,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
+    return num.toString(n);
     throw new Error('Not implemented');
 }
 
@@ -396,6 +490,18 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
+  var rows = m1.length, cols = m2[0].length, colsm1 = m1[0].length;
+    var returnM = new Array(rows);
+    for(var row = 0; row < rows; row++) {
+        returnM[row] = new Array(cols).fill(0);
+        for (var col = 0; col < cols; col++) {
+            for(var i = 0; i < colsm1; i++) {
+                returnM[row][col] += (m1[row][i] * m2[i][col]);
+            }
+        }
+    }
+    return returnM;
+
     throw new Error('Not implemented');
 }
 

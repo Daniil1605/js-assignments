@@ -120,6 +120,20 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
+      return () => {
+        var tries = 0;
+        var answer = null;
+        while (tries < attempts){
+            try{
+                result = func();
+                break;
+            }
+            catch(err){
+                tries++;
+            }
+        }
+        return answer;
+    }
     throw new Error('Not implemented');
 }
 
@@ -187,7 +201,8 @@ function partialUsingArguments(fn) {
  *   getId10() => 11
  */
 function getIdGeneratorFunction(startFrom) {
-    throw new Error('Not implemented');
+      let Id = startFrom;
+    return () => Id++;
 }
 
 
